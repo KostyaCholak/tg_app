@@ -9,7 +9,7 @@ export function SkeletonCard() {
   return (
     <div className="flex flex-col">
       <div className="h-[calc(100vh-53px)] w-[calc(100vw)] border-b-red-400 border-b-2">
-        <video muted={true} loop={true} autoPlay={true} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
+        <video muted={true} autoPlay={true} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
           <track kind="metadata" label="cuepoints" data-removeondestroy=""/>
         </video>
       </div>
@@ -19,6 +19,9 @@ export function SkeletonCard() {
 
 let ts: number | undefined
 const onTouchStart = (e: TouchEvent) => {
+  if (window.scrollY === 0) {
+    window.scrollTo(0, 1);
+  }
   ts = e.touches[0].clientY;
   e.preventDefault();
 }
