@@ -22,17 +22,19 @@ export function SkeletonCard() {
 
 let ts: number | undefined
 const onTouchStart = (e: TouchEvent) => {
-  ts = e.touches[0].clientY
+  ts = e.touches[0].clientY;
+  e.preventDefault();
 }
+let scrollableEl: HTMLElement | null = null;
 const onTouchMove = (e: TouchEvent) => {
-  if (false) {
-    // const scroll = scrollableEl.scrollTop
-    // const te = e.changedTouches[0].clientY
-    // if (scroll <= 0 && ts! < te) {
-    //   e.preventDefault()
-    // }
+  if (scollableEl !== null) {
+    const scroll = scrollableEl.scrollTop
+    const te = e.changedTouches[0].clientY
+    if (scroll <= 0 && ts! < te) {
+      e.preventDefault()
+    }
   } else {
-    e.preventDefault()
+    e.preventDefault();
   }
 }
 document.documentElement.addEventListener('touchstart', onTouchStart, { passive: false })
@@ -40,6 +42,24 @@ document.documentElement.addEventListener('touchmove', onTouchMove, { passive: f
 
 
 export default function App() {
+  const carousel = (
+    <Carousel orientation="vertical">
+      <CarouselContent className="max-h-[500px] max-w-[350px]">
+        <CarouselItem>
+          <SkeletonCard />
+        </CarouselItem>
+        <CarouselItem>
+          <SkeletonCard />
+        </CarouselItem>
+        <CarouselItem>
+          <SkeletonCard />
+        </CarouselItem>
+      </CarouselContent>
+    </Carousel>
+  );
+
+  scrollableEl = carousel;
+
   return (
     <div className="grid h-screen w-screen pl-[53px]">
       <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
@@ -61,19 +81,7 @@ export default function App() {
         </header>
         <main className="flex-1 gap-4 overflow-auto p-4">
           <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
-            <Carousel orientation="horizontal">
-              <CarouselContent className="max-h-[500px] max-w-[350px]">
-                <CarouselItem>
-                  <SkeletonCard />
-                </CarouselItem>
-                <CarouselItem>
-                  <SkeletonCard />
-                </CarouselItem>
-                <CarouselItem>
-                  <SkeletonCard />
-                </CarouselItem>
-              </CarouselContent>
-            </Carousel>
+            { carousel }
           </div>
         </main>
       </div>
