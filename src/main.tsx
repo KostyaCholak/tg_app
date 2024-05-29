@@ -6,7 +6,10 @@ import './index.css'
 import '../app/globals.css';
 
 
-WebApp.ready();
+WebApp.expand()
+window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+window.scrollTo(0, 100);
+WebApp.ready()
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

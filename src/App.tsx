@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export function SkeletonCard() {
   return (
     <div className="flex flex-col space-y-3">
-      <Skeleton className="h-[425px] w-[350px] rounded-xl" />
+      <Skeleton className="h-[425px] w-[300px] rounded-xl" />
       <div className="space-y-2">
         <Skeleton className="h-4 w-[250px]" />
         <Skeleton className="h-4 w-[200px]" />
@@ -44,7 +44,7 @@ export default function App() {
         <main className="flex-1 gap-4 overflow-auto p-4">
           <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
             <Carousel orientation="horizontal">
-              <CarouselContent className="max-h-[500px] max-w-[400px]">
+              <CarouselContent className="max-h-[500px] max-w-[350px]">
                 <CarouselItem>
                   <SkeletonCard />
                 </CarouselItem>
