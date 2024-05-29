@@ -1,14 +1,18 @@
 
 import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
-import { Skeleton } from "@/components/ui/skeleton"
+// import { Skeleton } from "@/components/ui/skeleton"
 import { useEffect } from "react"
 
 
 export function SkeletonCard() {
   return (
     <div className="flex flex-col">
-      <Skeleton className="h-[calc(100vh-53px)] w-[calc(100vw)] border-b-red-400 border-b-2" />
+      <div className="h-[calc(100vh-53px)] w-[calc(100vw)] border-b-red-400 border-b-2">
+        <video muted={true} loop={true} autoPlay={true} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
+          <track kind="metadata" label="cuepoints" data-removeondestroy=""/>
+        </video>
+      </div>
     </div>
   )
 }
@@ -51,15 +55,6 @@ export default function App() {
           <div className="relative flex-col items-start gap-0 md:flex" x-chunk="dashboard-03-chunk-0">
           <Carousel orientation="vertical" className="scrollable-elt">
             <CarouselContent className="max-h-[calc(100vh-53px)] max-w-[calc(100vw)] -mt-0">
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
               <CarouselItem className="pt-0">
                 <SkeletonCard />
               </CarouselItem>
