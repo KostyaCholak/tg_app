@@ -7,8 +7,8 @@ import { useEffect } from "react"
 
 export function SkeletonCard() {
   return (
-    <div className="flex flex-col space-y-3">
-      <Skeleton className="h-[calc(100vh-100px)] w-[calc(100vw-30px)] rounded-xl" />
+    <div className="flex flex-col">
+      <Skeleton className="h-[calc(100vh-53px)] w-[calc(100vw)] border-b-red-400" />
     </div>
   )
 }
@@ -47,17 +47,17 @@ export default function App() {
         <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
           <h1 className="text-xl font-semibold">TikTon</h1>
         </header>
-        <main className="flex-1 gap-4 overflow-auto p-4">
-          <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
+        <main className="flex-1 overflow-auto">
+          <div className="relative flex-col items-start gap-0 md:flex" x-chunk="dashboard-03-chunk-0">
           <Carousel orientation="vertical" className="scrollable-elt">
-            <CarouselContent className="max-h-[calc(100vh - 120px)] max-w-[calc(100vw)]">
-              <CarouselItem>
+            <CarouselContent className="max-h-[calc(100vh-53px)] max-w-[calc(100vw)] -mt-0">
+              <CarouselItem className="pt-0">
                 <SkeletonCard />
               </CarouselItem>
-              <CarouselItem>
+              <CarouselItem className="pt-0">
                 <SkeletonCard />
               </CarouselItem>
-              <CarouselItem>
+              <CarouselItem className="pt-0">
                 <SkeletonCard />
               </CarouselItem>
             </CarouselContent>
