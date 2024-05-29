@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
 import { Skeleton } from "@/components/ui/skeleton"
- 
+
 
 export function SkeletonCard() {
   return (
@@ -19,6 +19,24 @@ export function SkeletonCard() {
     </div>
   )
 }
+
+let ts: number | undefined
+const onTouchStart = (e: TouchEvent) => {
+  ts = e.touches[0].clientY
+}
+const onTouchMove = (e: TouchEvent) => {
+  if (false) {
+    // const scroll = scrollableEl.scrollTop
+    // const te = e.changedTouches[0].clientY
+    // if (scroll <= 0 && ts! < te) {
+    //   e.preventDefault()
+    // }
+  } else {
+    e.preventDefault()
+  }
+}
+document.documentElement.addEventListener('touchstart', onTouchStart, { passive: false })
+document.documentElement.addEventListener('touchmove', onTouchMove, { passive: false })
 
 
 export default function App() {

@@ -6,11 +6,14 @@ import './index.css'
 import '../app/globals.css';
 
 
-WebApp.expand()
-window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
-window.scrollTo(0, 100);
-WebApp.ready()
-
+WebApp.expand();
+const overflow = 100;
+document.body.style.overflowY = 'hidden'
+document.body.style.marginTop = `${overflow}px`
+document.body.style.height = window.innerHeight + overflow + "px"
+document.body.style.paddingBottom = `${overflow}px`
+window.scrollTo(0, overflow);
+WebApp.ready();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
