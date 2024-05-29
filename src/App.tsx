@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
 import { Skeleton } from "@/components/ui/skeleton"
+import { useEffect } from "react"
 
 
 export function SkeletonCard() {
@@ -27,7 +28,7 @@ const onTouchStart = (e: TouchEvent) => {
 }
 let scrollableEl: HTMLElement | null = null;
 const onTouchMove = (e: TouchEvent) => {
-  if (scollableEl !== null) {
+  if (scrollableEl !== null) {
     const scroll = scrollableEl.scrollTop
     const te = e.changedTouches[0].clientY
     if (scroll <= 0 && ts! < te) {
@@ -42,24 +43,10 @@ document.documentElement.addEventListener('touchmove', onTouchMove, { passive: f
 
 
 export default function App() {
-  const carousel = (
-    <Carousel orientation="vertical">
-      <CarouselContent className="max-h-[500px] max-w-[350px]">
-        <CarouselItem>
-          <SkeletonCard />
-        </CarouselItem>
-        <CarouselItem>
-          <SkeletonCard />
-        </CarouselItem>
-        <CarouselItem>
-          <SkeletonCard />
-        </CarouselItem>
-      </CarouselContent>
-    </Carousel>
-  );
-
-  scrollableEl = carousel;
-
+  useEffect(() => {
+    scrollableEl = document.querySelector('.scrollable-elt');
+    console.log('Component has mounted');
+  }, []); 
   return (
     <div className="grid h-screen w-screen pl-[53px]">
       <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
@@ -81,10 +68,23 @@ export default function App() {
         </header>
         <main className="flex-1 gap-4 overflow-auto p-4">
           <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
-            { carousel }
+          <Carousel orientation="vertical" className="scrollable-elt">
+            <CarouselContent className="max-h-[500px] max-w-[350px]">
+              <CarouselItem>
+                <SkeletonCard />
+              </CarouselItem>
+              <CarouselItem>
+                <SkeletonCard />
+              </CarouselItem>
+              <CarouselItem>
+                <SkeletonCard />
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
           </div>
         </main>
       </div>
     </div>
   )
 }
+
