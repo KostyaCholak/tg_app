@@ -1,8 +1,4 @@
-import {
-  Triangle
-} from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
 import { Skeleton } from "@/components/ui/skeleton"
@@ -45,26 +41,15 @@ document.documentElement.addEventListener('touchmove', onTouchMove, { passive: f
 export default function App() {
   useEffect(() => {
     scrollableEl = document.querySelector('.scrollable-elt');
-    console.log('Component has mounted');
+    setTimeout(() => {
+    document.body.style.backgroundColor = 'hsl(0 10% 3.9%)';
+    }, 10);
   }, []); 
   return (
-    <div className="grid h-screen w-screen pl-[53px]">
-      <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
-        <div className="border-b p-2">
-          <Button variant="outline" size="icon" aria-label="Home">
-            <Triangle className="size-5 fill-foreground" />
-          </Button>
-        </div>
-        <nav className="grid gap-1 p-2">
-          
-        </nav>
-        <nav className="mt-auto grid gap-1 p-2">
-          
-        </nav>
-      </aside>
+    <div className="grid h-screen w-screen">
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
-          <h1 className="text-xl font-semibold">Playground</h1>
+          <h1 className="text-xl font-semibold">TikTon</h1>
         </header>
         <main className="flex-1 gap-4 overflow-auto p-4">
           <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
