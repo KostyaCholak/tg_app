@@ -1,37 +1,89 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  Bird,
+  CornerDownLeft,
+  Rabbit,
+  Settings,
+  Share,
+  Triangle,
+  Turtle
+} from "lucide-react"
 
-import WebApp from '@twa-dev/sdk'
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea";
+import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Skeleton } from "@/components/ui/skeleton"
+ 
 
+export function SkeletonCard() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-[425px] w-[250px] rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-        {/* Here we add our button with alert callback */}
-      <div className="card">
-        <button onClick={() => WebApp.showAlert(`Hello World! Current count is ${count}`)}>
-            Show Alert
-        </button>
-      </div>
-    </>
+    </div>
   )
 }
 
-export default App;
+
+export default function App() {
+  return (
+    <div className="grid h-screen w-screen pl-[53px]">
+      <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
+        <div className="border-b p-2">
+          <Button variant="outline" size="icon" aria-label="Home">
+            <Triangle className="size-5 fill-foreground" />
+          </Button>
+        </div>
+        <nav className="grid gap-1 p-2">
+          
+        </nav>
+        <nav className="mt-auto grid gap-1 p-2">
+          
+        </nav>
+      </aside>
+      <div className="flex flex-col">
+        <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
+          <h1 className="text-xl font-semibold">Playground</h1>
+        </header>
+        <main className="flex-1 gap-4 overflow-auto p-4">
+          <div className="relative flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0">
+            <Carousel orientation="vertical">
+              <CarouselContent className="max-h-[500px]">
+                <CarouselItem>
+                  <SkeletonCard />
+                </CarouselItem>
+                <CarouselItem>
+                  <SkeletonCard />
+                </CarouselItem>
+                <CarouselItem>
+                  <SkeletonCard />
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}

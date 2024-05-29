@@ -1,3 +1,4 @@
+import path from "path"
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc';
 import basicSsl from '@vitejs/plugin-basic-ssl';
@@ -8,5 +9,14 @@ export default defineConfig({
   build: {
     outDir: './docs'
   },
-  base: './',
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  server: {
+    watch: {
+      usePolling: true
+    }
+  }
 })
