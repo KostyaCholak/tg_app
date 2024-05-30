@@ -73,7 +73,7 @@ export default function App() {
         </header>
         <main className="flex-1 overflow-auto">
           <div className="relative flex-col items-start gap-0 md:flex" x-chunk="dashboard-03-chunk-0">
-          <video width={500} height={720} id="video1" muted={true} autoPlay={false} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
+          <video playsInline={true} width={500} height={720} id="video1" muted={true} autoPlay={false} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
             {/* <track kind="metadata" label="cuepoints" data-removeondestroy=""/> */}
           </video>
           <Carousel orientation="vertical" className="scrollable-elt">
