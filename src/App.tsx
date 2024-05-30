@@ -2,16 +2,17 @@
 import { Carousel, CarouselContent, CarouselItem } from "./components/ui/carousel"
 
 // import { Skeleton } from "@/components/ui/skeleton"
-import { useEffect } from "react"
+import { useEffect } from "react";
+import './App.css';
 
 
-export function SkeletonCard() {
+export function SkeletonCard(props: { id?: string }) {
   return (
     <div className="flex flex-col">
       <div className="h-[calc(100vh-53px)] w-[calc(100vw)] border-b-red-400 border-b-2">
-        <video muted={true} autoPlay={true} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
-          <track kind="metadata" label="cuepoints" data-removeondestroy=""/>
-        </video>
+        <canvas 
+          id={`canvas-${props.id}`}
+        />
       </div>
     </div>
   )
@@ -44,9 +45,25 @@ document.documentElement.addEventListener('touchmove', onTouchMove, { passive: f
 export default function App() {
   useEffect(() => {
     scrollableEl = document.querySelector('.scrollable-elt');
-    setTimeout(() => {
-    document.body.style.backgroundColor = 'hsl(0 10% 3.9%)';
-    }, 10);
+
+    const video = document.getElementById('video1') as HTMLVideoElement;
+    // render video on canvas
+    const canvas = document.getElementById('canvas-0') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    const draw = () => {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      requestAnimationFrame(draw);
+    }
+    video.onloadeddata = () => {
+      // canvas.width = video.videoWidth;
+      // canvas.height = video.videoHeight;
+      draw();
+    }
+    // video.onplay = () => {
+    //   draw();
+    // }
+    video.play();
+
   }, []); 
   return (
     <div className="grid h-screen w-screen">
@@ -56,25 +73,19 @@ export default function App() {
         </header>
         <main className="flex-1 overflow-auto">
           <div className="relative flex-col items-start gap-0 md:flex" x-chunk="dashboard-03-chunk-0">
+          <video width={500} height={720} id="video1" muted={true} autoPlay={false} src="https://videos.pexels.com/video-files/20770858/20770858-hd_1080_1920_30fps.mp4" preload="metadata">
+            {/* <track kind="metadata" label="cuepoints" data-removeondestroy=""/> */}
+          </video>
           <Carousel orientation="vertical" className="scrollable-elt">
             <CarouselContent className="max-h-[calc(100vh-53px)] max-w-[calc(100vw)] -mt-0">
               <CarouselItem className="pt-0">
-                <SkeletonCard />
+                <SkeletonCard id="0" />
               </CarouselItem>
               <CarouselItem className="pt-0">
-                <SkeletonCard />
+                <SkeletonCard id="1" />
               </CarouselItem>
               <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
-              </CarouselItem>
-              <CarouselItem className="pt-0">
-                <SkeletonCard />
+                <SkeletonCard id="2" />
               </CarouselItem>
             </CarouselContent>
           </Carousel>
